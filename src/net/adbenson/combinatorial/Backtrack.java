@@ -4,21 +4,21 @@ public abstract class Backtrack<Type> {
 		
 	boolean finished = false;
 	
-	public final void backtrack(Type []a, int k, int n) {
+	public final void backtrack(Type[] partial, int currentIndex, int n) {
 		Type c[];
 		int i;
 		
-		if (is_a_solution(a, k, n)) {
-			process_solution(a, k, n);			
+		if (is_a_solution(partial, currentIndex, n)) {
+			process_solution(partial, currentIndex, n);			
 		}
 		else {
-			k = k + 1;
-			c = construct_candidates(a, k, n);
+			currentIndex = currentIndex + 1;
+			c = construct_candidates(partial, currentIndex, n);
 			for (i = 0; i < c.length; i++) {
-				a[k] = c[i];
-				make_move(a, k, n);
-				backtrack(a, k, n);
-				unmake_move(a, k, n);
+				partial[currentIndex] = c[i];
+				make_move(partial, currentIndex, n);
+				backtrack(partial, currentIndex, n);
+				unmake_move(partial, currentIndex, n);
 				if (finished) return;
 			}
 		}
