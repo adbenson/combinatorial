@@ -17,9 +17,9 @@ public class SubsetSearch extends Backtrack<Boolean> {
 	public void process_solution(Boolean[] a, int k, int n) {
 
 		System.out.print("{");
-		for (int i = 1; i <= k; i++) {
+		for (int i = 0; i < k; i++) {
 			if (a[i]) {
-				System.out.print(" " + i);
+				System.out.print(" " + (i + 1));
 			}
 		}
 		
@@ -27,7 +27,7 @@ public class SubsetSearch extends Backtrack<Boolean> {
 	}
 	
 	public void generate_subsets(int n) {
-		Boolean[] a = new Boolean[n+1];
+		Boolean[] a = new Boolean[n];
 		
 		backtrack(a, 0, n);
 	}

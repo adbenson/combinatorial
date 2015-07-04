@@ -5,19 +5,18 @@ public abstract class Backtrack<Type> {
 	boolean finished = false;
 	
 	public final void backtrack(Type[] partial, int currentIndex, int n) {
-		Type c[];
-		int i;
 		
 		if (is_a_solution(partial, currentIndex, n)) {
 			process_solution(partial, currentIndex, n);			
 		}
 		else {
-			currentIndex = currentIndex + 1;
-			c = construct_candidates(partial, currentIndex, n);
-			for (i = 0; i < c.length; i++) {
-				partial[currentIndex] = c[i];
+			Type[] candidates = construct_candidates(partial, currentIndex, n);
+			
+			for (int i = 0; i < candidates.length; i++) {
+				
+				partial[currentIndex] = candidates[i];
 				make_move(partial, currentIndex, n);
-				backtrack(partial, currentIndex, n);
+				backtrack(partial, currentIndex + 1, n);
 				unmake_move(partial, currentIndex, n);
 				if (finished) return;
 			}
