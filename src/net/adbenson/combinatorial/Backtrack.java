@@ -2,7 +2,7 @@ package net.adbenson.combinatorial;
 
 public abstract class Backtrack<Type> {
 		
-	boolean finished = false;
+	protected boolean finished = false;
 	
 	public final void backtrack(Type[] partial, int currentIndex, int n) {
 		
@@ -15,10 +15,14 @@ public abstract class Backtrack<Type> {
 			for (int i = 0; i < candidates.length; i++) {
 				
 				partial[currentIndex] = candidates[i];
+				
 				make_move(partial, currentIndex, n);
 				backtrack(partial, currentIndex + 1, n);
 				unmake_move(partial, currentIndex, n);
-				if (finished) return;
+				
+				if (finished) {
+					return;
+				}
 			}
 		}
 	}
